@@ -1,16 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
+#include <string.h>
 
-int numMaiusc(char palavra[], int i) {
-    int contador = 0;
-    if(i < strlen(palavra)) {
-        if(palavra[i] >= 'A' && palavra[i] <= 'Z')
-            contador++;
-        contador = contador + numMaiusc(palavra, i+1);    
+int isPalindromo(char palavra[], int i, int y) {
+    int resposta = 0;
+    if(i < strlen(palavra) / 2) {
+        if(palavra[i] != palavra[y]) {
+            resposta = 1;
+            resposta = resposta + isPalindromo(palavra, y, i);
+        }
+        resposta = resposta + isPalindromo(palavra, i + 1, y - 1);
     }
-    return contador;
+
+    return resposta;
 }
 
 bool eIgual(char x[], char y[]) {
@@ -32,11 +34,13 @@ int main() {
     scanf("%[^\n]", palavra);
     getchar();
     while(!eIgual(palavra, "FIM")) {
-        int resposta = numMaiusc(palavra, 0);
-        printf("%d\n", resposta);
+        int resposta = isPalindromo(palavra, 0, strlen(palavra) - 1);
+        if(resposta >= 1) 
+            printf("NAO\n");
+        else    
+            printf("SIM\n");
         scanf("%[^\n]", palavra);
         getchar();
     }
-
     return 0;
 }

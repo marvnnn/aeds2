@@ -8,14 +8,26 @@ public class Aquecimento_Iterativo {
         }
         return contador;
     }
+    private static boolean eIgual(String x, String y) {
+        boolean resposta = false;
+        if(x.length() == y.length()) {
+            resposta = true;
+            for(int i = 0; i < x.length(); i++) {
+                if(x.charAt(i) != y.charAt(i)) {
+                    resposta = false;
+                    i = x.length();   
+                }
+            }
+        }
+        return resposta;
+    }
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         String palavra = scan.nextLine();
-        while (!palavra.equals("FIM")) {
+        while (!eIgual(palavra, "FIM")) {
             int resposta = numMaiusc(palavra);
             System.out.println(resposta);
             palavra = scan.nextLine();
         }
     }
-    
 }
