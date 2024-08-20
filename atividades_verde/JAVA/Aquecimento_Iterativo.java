@@ -29,5 +29,6 @@ public class Aquecimento_Iterativo {
             System.out.println(resposta);
             palavra = scan.nextLine();
         }
+        scan.close();
     }
 }

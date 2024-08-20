@@ -1,25 +1,29 @@
+import java.util.Random;
 import java.util.Scanner;
-public class Ciframento {
-    private static String codificador(String x) { // Função para codificar a palavra
+
+public class Alteracao_Aleatoria {
+    public static String randomGenerator(String x) {
+        Random gerador = new Random();
+        gerador.setSeed(4);
+        char pLetra = ((char)('a' + (Math.abs(gerador.nextInt() % 26))));
+        char sLetra = ((char)('a' + (Math.abs(gerador.nextInt() % 26))));
         String y = "";
         for(int i = 0; i < x.length(); i++) {
-            if(x.charAt(i) >= 32 && x.charAt(i) <= 127) {
-                y += (char)(x.charAt(i) + 3);
+            if(x.charAt(i) == pLetra) {
+                y += sLetra;
             }
             else {
                 y += x.charAt(i);
             }
         }
-            
         return y;
     }
-
-    public static boolean eIgual(String x, String y) { // FUnção para comparar duas strings
+    public static boolean eIgual(String x, String y) { // Função para comparar duas strings
         boolean resposta = false;
         int tam1 = x.length(), tam2 = y.length();
-        if(tam1 == tam2) {
+        if(tam2 == tam1) {
             resposta = true;
-            for(int i = 0; i < tam1; i++) {
+            for(int i = 0; i < tam2; i++) {
                 if(x.charAt(i) != y.charAt(i)) {
                     resposta = false;
                     i = tam1;   
@@ -28,15 +32,14 @@ public class Ciframento {
         }
         return resposta;
     }
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         String palavra = scan.nextLine();
-        while(!eIgual(palavra, "FIM")) { // Enquanto for igual, chama a função para codificar.
-            palavra = codificador(palavra);
+        while (!eIgual(palavra, "FIM")) {
+            palavra = randomGenerator(palavra);
             System.out.println(palavra);
             palavra = scan.nextLine();
-        }
-        scan.close();
+        }  
+        scan.close();      
     }
 }

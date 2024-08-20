@@ -3,17 +3,17 @@
 #include <string.h>
 #include <stdbool.h>
 
-int numMaiusc(char palavra[], int i) {
-    int contador = 0;
-    if(i < strlen(palavra)) {
-        if(palavra[i] >= 'A' && palavra[i] <= 'Z')
-            contador++;
-        contador = contador + numMaiusc(palavra, i+1);    
+int numMaiusc(char palavra[], int i) { // Função para contar o número de letras maiúsculas dado uma string.
+    int contador = 0; // Inicializa o contador com 0.
+    if(i < strlen(palavra)) { // Caso i seja menor que o tamanho da palavra.
+        if(palavra[i] >= 'A' && palavra[i] <= 'Z') // Caso palavra na posição i seja maior ou igual a "A" e menor ou igual a "Z".
+            contador++; // Incrementa em um o contador.
+        contador = contador + numMaiusc(palavra, i+1); // Chama a função recursivamente, armazenando seu retorno na variável contador.   
     }
-    return contador;
+    return contador; // Retorna contador.
 }
 
-bool eIgual(char x[], char y[]) {
+bool eIgual(char x[], char y[]) { // Função para verificar se uma string é igual a outra.
     bool resposta = false;
     if(strlen(x) == strlen(y)) {
         resposta = true;
@@ -24,19 +24,18 @@ bool eIgual(char x[], char y[]) {
             }
         }
     }
-    return resposta;
+    return resposta; // Retorna false ou true.
 }
 
 int main() {
     char palavra[500];
-    scanf("%[^\n]", palavra);
-    getchar();
-    while(!eIgual(palavra, "FIM")) {
-        int resposta = numMaiusc(palavra, 0);
-        printf("%d\n", resposta);
-        scanf("%[^\n]", palavra);
-        getchar();
+    scanf("%[^\n]", palavra); // Scaneia a palavra armazenando-a na variável palavra.
+    getchar(); // Limpa o buffer.
+    while(!eIgual(palavra, "FIM")) { // Enquanto não for igual.
+        int resposta = numMaiusc(palavra, 0); // Armazena o retorno da função na variável resposta, mandando a palavra e 0 como parámetros.
+        printf("%d\n", resposta); // Mostra a resposta.
+        scanf("%[^\n]", palavra); // Scaneia a próxima palavra.
+        getchar(); // Limpa o buffer.
     }
-
     return 0;
 }
