@@ -1,21 +1,16 @@
-import java.util.Random;
 import java.util.Scanner;
 
-public class Alteracao_Aleatoria {
-    public static char randomChar(Random gerador) {
-        return (char)('a' + (Math.abs(gerador.nextInt() % 26)));
-    }
-    public static String randomGenerator(String x, Random gerador) {
-        char pLetra = randomChar(gerador);
-        char sLetra = randomChar(gerador);
+public class Ciframento_Recursivo {
+    public static String codificador(String x, int i) {
+        int tam = x.length();
         String y = "";
-        for(int i = 0; i < x.length(); i++) {
-            if(x.charAt(i) == pLetra) {
-                y += sLetra;
-            }
-            else {
+        if(i < tam) {
+            if(x.charAt(i) >= 32 && x.charAt(i) <= 127) {
+                y += (char)(x.charAt(i) + 3);
+            } else {
                 y += x.charAt(i);
             }
+            y += codificador(x, i+1);
         }
         return y;
     }
@@ -33,16 +28,15 @@ public class Alteracao_Aleatoria {
         }
         return resposta;
     }
+
     public static void main(String[] args) {
-        Random gerador = new Random();
-        gerador.setSeed(4);
         Scanner scan = new Scanner(System.in);
         String palavra = scan.nextLine();
-        while (!eIgual(palavra, "FIM")) {
-            palavra = randomGenerator(palavra, gerador);
+        while(!eIgual(palavra, "FIM")) {
+            palavra = codificador(palavra, 0);
             System.out.println(palavra);
             palavra = scan.nextLine();
-        }  
-        scan.close();      
+        }
+        scan.close();
     }
 }
