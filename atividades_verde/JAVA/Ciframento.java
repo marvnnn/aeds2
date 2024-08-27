@@ -9,8 +9,7 @@ public class Ciframento {
             else {
                 y += x.charAt(i);
             }
-        }
-            
+        }   
         return y;
     }
 
