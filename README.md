@@ -1,5 +1,6 @@
 # 💻 AEDS II
 Repositório de códigos da disciplina de Algoritmos e Estrutura de Dados II
+Aluno: Mateus Martins Parreiras, fork do repositório principal para organização de atividades e trabalhos destinados a disciplina de Algoritimo e Estrutura de Dados II.
 
 ## ❓ Ajuda
 [Guia com os principais comandos](fonte/ajuda/README.md)
