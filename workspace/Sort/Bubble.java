@@ -7,15 +7,18 @@ public class Bubble {
     public static void bubbleSort(int[] array) {
         int tam = array.length;
         int iBarrier = tam;
-        int jBarrier = tam-1;
+        int jBarrier = tam;
         for(int i = 0; i < iBarrier; i++) {
-            for(int j = 0; j < jBarrier; j++) {
+            boolean newSwap = false;
+            for(int j = 0; j < jBarrier-1; j++) {
                 if(array[j] > array[j+1]) {
                     swap(array, j+1, j);
                     iBarrier = j+1;
+                    newSwap = true;
                 }
             }
-            jBarrier = iBarrier - 1;
+            if(!newSwap) i = iBarrier;
+            jBarrier = iBarrier;
         }
     }
     public static void printArray(int[] array){
@@ -24,7 +27,7 @@ public class Bubble {
         System.out.println();
     }
     public static void main(String[] args) {
-        int[] array = {1, 4, 2, 4, 5, 6, 3, 9, 11, 7};
+        int[] array = {1, 5, 2, 4, 3, 10, 2, 6, 11, 0};
         printArray(array);
         bubbleSort(array);
         printArray(array);
